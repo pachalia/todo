@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type TodoResponse {
+  """ID todo"""
+  id: ID!
+
+  """Заголовок Todo"""
+  title: String!
+
+  """Описание Todo"""
+  description: String!
+
+  """Выполнен todo или нет"""
+  status: Boolean!
+
+  """Дата создания todo"""
+  createdAt: String!
+}
+
+type Query {
+  getTodo: [TodoResponse!]
+}
+
+type Mutation {
+  create(title: String!, description: String!): TodoResponse
+  update(id: String!): TodoResponse
+  delete(id: String!): Boolean!
+}
