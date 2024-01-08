@@ -13,13 +13,13 @@ const Input = (props:UseControllerProps<FormValue>) => {
     const {field} = useController(props)
     return (
         <div style={{width:"100%"}}>
-            <input {...field} placeholder={props.name} style={{width:"100%", padding:"10px 0", marginBottom:20}} />
+            <input {...field} placeholder={props.name === "Title" ? "Введите заголовок Todo": "Введите описание Todo"} style={{width:"100%", padding:"10px 0", marginBottom:20}} />
         </div>
     )
 }
 const AddTodoForm:React.FC = () => {
     const dispatch = useAppDispatch()
-    const {control, handleSubmit,reset} = useForm<FormValue>({
+    const {control, handleSubmit,reset,formState:{isValid}} = useForm<FormValue>({
         defaultValues:{Title: "", Description:""},
     })
     const onSubmit = async(data:FormValue) =>{
@@ -33,9 +33,11 @@ const AddTodoForm:React.FC = () => {
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div style={{display: "flex", width: '60%', margin: '0 auto', flexDirection: 'column'}}>
+                    <label htmlFor="Title"> Поле обязательно для заполнения</label>
                     <Input control={control} name={"Title"} rules={{required: true}}/>
+                    <label htmlFor="Description"> Поле обязательно для заполнения</label>
                     <Input control={control} name="Description"  rules={{required: true}}/>
-                    <button type={"submit"} style={{cursor: "pointer", width:'30%', margin: '0 auto', padding: '5px 0'}}>Добавить</button>
+                    <button disabled={!isValid} type={"submit"} style={{cursor: "pointer", width:'30%', margin: '0 auto', padding: '5px 0'}}>Добавить</button>
                 </div>
             </form>
         </>
@@ -43,7 +45,3 @@ const AddTodoForm:React.FC = () => {
 }
 
 export default AddTodoForm
-
-
-
-

@@ -8,7 +8,7 @@ import './todo.scss'
 const Todo:React.FC = () => {
     const {todo} = useAppSelector(state => state.todos)
     const dispatch = useAppDispatch()
-    const lineTable = ['№', 'Title Todo', 'Description', 'Status', 'Дата создания', 'Удалить']
+    const lineTable = ['№', 'Заголовок Todo', 'Описание', 'Статус', 'Дата создания', 'Удалить']
     useEffect(() => {
         new TodoService().get_todos().then((res) => dispatch(get_todos(res.todos))).catch(e=>alert('Сервер не доступен'))
     }, [dispatch]);
@@ -59,5 +59,4 @@ const Todo:React.FC = () => {
         </>
     )
 }
-
 export default Todo

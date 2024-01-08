@@ -8,7 +8,7 @@ const App:React.FC = () => {
     return (
         <>
             <h1 style={{textAlign: 'center'}}>Todo List</h1>
-            <h3 style={{textAlign: 'center'}}>Чтобы изменить статус todo кликните на todo </h3>
+            <h3 style={{textAlign: 'center'}}>Чтобы изменить статус todo кликните на заголовке todo </h3>
             <Todo/>
             <AddTodoForm/>
         </>
